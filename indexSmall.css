@@ -1,0 +1,188 @@
+:root {
+    --header-font: 'Archivo';
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    padding: 0;
+    margin: 0;
+    overflow: scroll;
+    user-select: none;
+    min-height: 730px;
+    /*background-color: #000;*/
+}
+
+/*.header {
+    position: relative;
+    height: 100px;
+    z-index: 99;
+    !*background-color: #000;*!
+    background-color: #fff;
+}
+.header h1 {
+    font-family: 'Fleur De Leah';
+    font-size: 60px;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+svg {
+    width: 30px;
+    position: absolute;
+    top: 36px;
+    left: 40px;
+    z-index: 99;
+    transition: opacity 0.4s ease-in-out;
+    cursor: pointer;
+}
+.svgBarAnimate {
+    animation: spin 0.4s ease-in-out;
+    animation-iteration-count: 1;
+}
+.svgXAnimate {
+    animation: spin 0.4s ease-in-out;
+    animation-iteration-count: 1;
+    animation-direction: reverse;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.navBar {
+    position: absolute;
+    width: 100%;
+    z-index: 3;
+    display: block;
+    top: -450px;
+    transition: top 0.4s ease-in-out;
+}
+.navBar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 540px;
+    text-align: center;
+    position: relative;
+    border-radius: 35px;
+    color: #fff;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.11);
+}
+.navBar li {
+    cursor: pointer;
+    border-radius: 32px;
+    height: 100px;
+    line-height: 100px;
+    font-family: 'Arsenal';
+    font-weight: bold;
+    font-size: 26px;
+    color: #269bbe;
+    transition: color 0.5s ease-in-out, background-color 0.4s ease-in-out, text-shadow 0.5s ease-in-out;
+}
+.navBar li:first-child {
+    height: 120px;
+    cursor: default;
+}
+.navBar li.active {
+    text-decoration: underline;
+}
+.navBar li:not(:first-child):hover {
+    border-radius: 32px;
+    background-color: rgba(38, 155, 190, 0.85);
+    color: white;
+    text-shadow: 1px 1px 6px #333;
+}*/
+.sideBar {
+    display: none;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.bgDiv {
+    position: relative;
+    width: 100%;
+    z-index: -1;
+}
+.bgDiv img {
+    position: absolute;
+    right: 0;
+    height: 65vh;
+    min-height: 400px;
+    width: 100%;
+    min-width: 1000px;
+}
+
+.season {
+    font-family: var(--header-font);
+    font-weight: 900;
+    font-size: clamp(20px, 21vw, 109px);
+    text-align: center;
+    color: #fff;
+    margin-top: 150px;
+    text-shadow: 1px 1px 20px #82d000;
+}
+
+.day , .curMonth{
+    font-family: var(--header-font);
+    font-weight: 900;
+    font-size: clamp(300px, 80vw, 400px);
+    text-align: center;
+    color: transparent;
+    background-color: transparent;
+    background-image: url('./files/summer.jpg');
+    background-size: 2000px;
+    -webkit-background-clip: text;
+    -moz-background-clip: initial;
+    background-clip: text;
+    background-position: 0 -175px;
+    z-index: 2;
+    margin: 0 15px 0 0;
+    padding: 0;
+}
+.day {
+    position: absolute;
+    /*bottom: 15px;*/
+    /*bottom: -550px;*/
+    top: clamp(200px, 40vh, 1900px);
+}
+.months {
+    font-family: var(--header-font);
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    height: 92px;
+    position: absolute;
+    /*bottom: 0;*/
+    /*bottom: -210%;*/
+    top: clamp(550px, 78vh, 750px);
+}
+.preMonth, .nexMonth {
+    width: 10%;
+    font-size: 32px;
+    font-weight: 100;
+    color: #afafafaa;
+}
+.curMonth {
+    width: 40%;
+    min-width: 250px;
+    font-size: 92px;
+    font-weight: 600;
+    bottom: 0;
+    background-position: 1000px -275px;
+}
+

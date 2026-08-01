@@ -1,0 +1,758 @@
+:root {
+    --primaryColor: #d6ab1c;
+    --secondaryColor: #4e4fcc;
+    --sideBgColor: #ffffffff; /*#27276bff*/
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 400;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+}
+
+/*////////////////////////////////////////////////////////////////////////*/
+/*----------------------------Background Stuff----------------------------*/
+/*////////////////////////////////////////////////////////////////////////*/
+#bgVid {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+#bgVid video {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    z-index: 0;
+}
+.blurborder {
+    position: absolute;
+    z-index: 1;
+    backdrop-filter: blur(5px);
+}
+.blurborder:nth-child(2) { /*Top*/
+    top: 0;
+    width: 100vw;
+    height: 5vh;
+}
+.blurborder:nth-child(3) { /*Left*/
+    top: 0;
+    left: 0;
+    width: 5vh;
+    height: 100vh;
+}
+.blurborder:nth-child(4) { /*Bottom*/
+    bottom: 0;
+    width: 100vw;
+    height: 5vh;
+}
+.blurborder:nth-child(5) { /*Right*/
+    top: 0;
+    right: 0;
+    width: 5vh;
+    height: 100vh;
+}
+.transImg {
+    width: 10vh;
+    height: 10vh;
+    position: absolute;
+    backdrop-filter: blur(5px);
+    -webkit-mask-image: url(./files/3colored.svg);
+    mask-image: url(./files/3colored.svg);
+    mask-repeat: no-repeat;
+    z-index: 1;
+}
+#cornerBlurTL {
+    transform: rotateZ(180deg);
+    top: 4vh;
+    left: 4vh;
+}
+#cornerBlurTR {
+    transform: rotateX(180deg);
+    top: 5vh;
+    right: 5vh;
+}
+#cornerBlurBR {
+    bottom: 4.5vh;
+    right: 4.5vh;
+}
+#cornerBlurBL {
+    transform: rotateY(180deg);
+    bottom: 4.5vh;
+    left: 4.5vh;
+}
+
+/*////////////////////////////////////////////////////////////////////////*/
+/*-----------------------------Header Section-----------------------------*/
+/*////////////////////////////////////////////////////////////////////////*/
+/*.header {
+    display: none;
+}
+.navBar {
+    position: absolute;
+    width: 43%;
+    max-width: 600px;
+    z-index: 3;
+    display: block;
+    top: 15px;
+    left: 80px;
+    text-align: center;
+}
+.navBar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    width: 100%;
+    height: 100px;
+}
+.navBar li {
+    width: 20%;
+    height: 50px;
+    line-height: 50px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 32px;
+    font-family: 'Arsenal';
+    font-size: 24px;
+    color: #fff; !*269bbe*!
+    position: relative;
+    top: 0;
+    transition: top 0.2s ease-in-out, color 0.5s ease-in-out, background-color 0.4s ease-in-out, text-shadow 0.5s ease-in-out;
+    text-wrap: nowrap;
+}
+.navBar li:first-child {
+    display: none;
+}
+.navBar li:last-child {
+    width: 25%;
+}
+.navBar li.active {
+    text-decoration: underline;
+}
+.navBar li:not(:first-child):hover {
+    top: -5px;
+}*/
+/*////////////////////////////////////////////////////////////////////////*/
+/*------------------------------Main Section------------------------------*/
+/*////////////////////////////////////////////////////////////////////////*/
+#main {
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+#currentStats {
+    color: white;
+    width: 40%;
+    height: 40%;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    position: absolute;
+    bottom: 8%;
+    left: clamp(50px, 5%, 300px);
+    overflow: hidden;
+}
+#currentTemp {
+    font-size: clamp(78px, 20vw, 92px);
+    font-weight: 500;
+    position: relative;
+}
+#currentTemp span {
+    font-size: 22px;
+    position: absolute;
+    top: 19px;
+}
+#currentCity {
+    font-size: clamp(26px, 4vw, 32px);
+    margin-bottom: 10px;
+}
+#currentDetails {
+    line-height: 20px;
+    font-size: clamp(12px, 3vw, 16px);
+}
+#currentDetails span:first-child::after {
+    content: '|';
+}
+#currentDetails sup {
+    position: relative;
+    top: 2px;
+    font-size: 12px;
+}
+/*////////////////////////////////////////////////////////////////////////////*/
+#sideContainer {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform-style: preserve-3d;
+}
+@keyframes rotateSideCon {
+    0% {
+        transform: translate(-50%, -50%) rotateX(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotateX(180deg);
+    }
+}
+#sideContainer>div:first-child {
+    width: 90%;
+    max-width: 550px;
+    height: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateX(0deg);
+    border-radius: 25px;
+    overflow: hidden;
+    animation-fill-mode: both;
+    backface-visibility: hidden;
+    display: block;
+}
+#layer1 {
+    background-color: var(--sideBgColor);
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+#layer1 img {
+    width: 70%;
+    max-width: 350px;
+    min-width: 240px;
+    position: absolute;
+    top: 50%;
+    left: 58%;
+    transform: translate(-50%, -50%);
+}
+
+#layer1>div:last-child {
+    width: 130px;
+    height: 46px;
+    position: absolute;
+    bottom: 5%;
+    right: 6%;
+}
+#downSvg {
+    width: 131px;
+    height: 46px;
+}
+#downSvg+div {
+    width: 100%;
+    height: 100%;
+    color: #fff;
+}
+#layer1>div:last-child>div span {
+    font-size: 14px;
+    font-weight: 250;
+    position: absolute;
+    top: 13px;
+    left: 7px;
+    text-align: center;
+}
+#layer1>div:last-child>div svg {
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    fill: #fff;
+    width: 34px;
+    cursor: pointer;
+}
+
+#layerTop {
+    font-weight: 350;
+    width: 50%;
+    height: 94%;
+    position: absolute;
+    top: 3%;
+    left: 3%;
+    border-radius: 25px;
+    background-color: #99999922;
+    backdrop-filter: blur(15px);
+    box-shadow: 1px 0 0 0 #aaaaaa77;
+}
+#layerTop div:first-child {
+    width: 120px;
+    position: relative;
+    top: 30px;
+    left: 45%;
+    transform: translateX(-50%) scaleY(1.2);
+}
+#layerTop div:first-child span {
+    font-size: 32px;
+    display: block;
+}
+#layerTop div:first-child span:last-child {
+    color: #aaa;
+}
+#digitalClock {
+    font-size: 40px;
+    font-weight: 500;
+    width: 120px;
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+}
+#digitalClock span {
+    color: var(--primaryColor);
+}
+#digitalClock span span {
+    color: var(--secondaryColor);
+}
+#digitalClock span:nth-child(2) {
+    font-weight: 200;
+}
+#layerTop div:last-child {
+    width: 120px;
+    position: absolute;
+    bottom: 30px;
+    left: 45%;
+    transform: translateX(-50%) scaleY(1.2);
+}
+#layerTop div:last-child span {
+    font-size: 32px;
+    display: block;
+}
+#layerTop div:last-child span:last-child {
+    width: 100%;
+    font-size: clamp(20px, 2vw, 24px);
+    color: #aaa;
+}
+
+/*////////////////////////////////////////////////////////////////////////*/
+/*------------------------------ Forecast --------------------------------*/
+/*////////////////////////////////////////////////////////////////////////*/
+#forecast {
+    width: 90%;
+    max-width: 550px;
+    height: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateX(180deg);/**/
+    animation-fill-mode: both;
+    backface-visibility: hidden;
+    color: #fff;
+
+    /*Temp*/
+    display: block;
+}
+.caret {
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    position: absolute;
+    left: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #4e4fcc55;
+    backdrop-filter: blur(2px);
+    z-index: 1;
+    border: 2px solid transparent;
+    transition: border 0.5s ease-in-out;
+}
+.caret svg {
+    width: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#hourlyForecast {
+    width: 100%;
+    height: 30%;
+    min-height: 195px;
+    max-height: 190px;
+    position: relative;
+    top: 0;
+    border-radius: 25px;
+    background-color: #00000013;
+    backdrop-filter: blur(20px);
+    overflow: hidden;
+}
+#hourlyForecast svg {
+    fill: #fff;
+}
+#hourlyForecast>span:first-child {
+    position: sticky;
+    top: 17px;
+    left: 20px;
+}
+.hr {
+    width: 90%;
+    border-top: 2px solid #777777;
+    position: sticky;
+    top: 50px;
+    left: 5%;
+}
+#hourlyForecast>div:nth-child(3) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: fit-content;
+    height: 130px;
+    position: relative;
+    top: 34px;
+    left: 10px;
+    transition: left 0.3s ease-out;
+}
+#hourlyForecast>.caret:nth-last-child(2) {
+    transform: rotateZ(90deg);
+    display: none;
+}
+#hourlyForecast>.caret:last-child {
+    left: initial;
+    right: 4px;
+    transform: rotateZ(-90deg);
+}
+.hourWeather {
+    width: 70px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-right: 5px;
+    transform: scale(1, 1);
+}
+.hourWeather span:first-child {
+    position: absolute;
+    top: 10px;
+    font-size: 12px;
+}
+.hourWeather svg {
+    width: 70%;
+    max-width: 32px;
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+}
+.hourWeather span:nth-child(3) {
+    position: absolute;
+    bottom: 25px;
+    left: 43%;
+    transform: translateX(-50%);
+}
+.hourWeather span:nth-child(3) sup {
+    position: absolute;
+    top: 1px;
+    font-size: 10px;
+}
+.hourWeather span:nth-child(4) {
+    position: absolute;
+    bottom: 0;
+    font-size: 12px;
+    color: #c0fdff;
+}
+
+/*////////////////////////////////////////////////////////////////////////////*/
+
+#dailyForecast {
+    width: 100%;
+    height: 60%;
+    max-height: 600px;
+    position: relative;
+    top: 5%;
+    border-radius: 25px;
+    background-color: #00000017;
+    backdrop-filter: blur(25px);
+    overflow: hidden;
+}
+#dailyForecast svg {
+     fill: #fff;
+ }
+#dailyForecast>span:first-child {
+    position: relative;
+    top: 20px;
+    left: 20px;
+}
+#dailyForecast>.hr {
+    top: 55px;
+}
+#dailyForecast>div:nth-child(3) {
+    width: 100%;
+    height: 85%;
+    position: relative;
+    top: 40px;
+    overflow: hidden;
+}
+#dailyForecast>div:nth-child(3)>div:first-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+    position: relative;
+    bottom: -5px;
+    transition: bottom 0.5s ease-out;
+}
+#dailyForecast>.caret:nth-child(4) {
+    display: none;
+    top: 65px;
+    left: 50%;
+    transform: translateX(-50%) rotateZ(180deg);
+}
+#dailyForecast>.caret:last-child {
+    top: initial;
+    bottom: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4e4fccaa;
+}
+.dayWeather {
+    width: 92%;
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.dayWeather span:first-child {
+    width: 65px;
+    min-width: 45px;
+    margin-right: 5px;
+}
+.dayWeather svg {
+    width: 32px;
+    min-width: 32px;
+    margin-right: 5px;
+}
+.dayWeather>span:nth-child(3) {
+    position: relative;
+    width: fit-content;
+    margin: 0 5px;
+}
+.dayWeather>input[type="range"] {
+    width: 120px;
+    min-width: 80px;
+    height: 5px;
+    margin-right: 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    background-image: linear-gradient(to right, #eee 21%, #12578f 21%, #269bbe 87%, #eee 87%);
+}
+.dayWeather>input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    outline: none;
+    width: 5px;
+    height: 5px;
+}
+.dayWeather>input[type="range"]::-moz-range-thumb {
+    border: none;
+    outline: none;
+    width: 5px;
+    height: 5px;
+}
+.dayWeather:not(:first-child)>input[type="range"]::-moz-range-thumb {
+    width: 0;
+    height: 0;
+}
+.dayWeather>span:last-child {
+    position: relative;
+    width: fit-content;
+    margin-left: 5px;
+}
+.dayWeather sup {
+    position: relative;
+    top: 1px;
+    font-size: clamp(6px, 2vw, 10px);
+}
+
+/*////////////////////////////////////////////////////////////////////////////*/
+#forecast>div:last-child {
+    width: 130px;
+    height: 46px;
+    position: relative;
+    top: 50px;
+    left: 100%;
+    transform: translate(-100%);
+}
+#downSvg2 {
+    width: 131px;
+    height: 46px;
+}
+#downSvg2+div {
+    width: 100%;
+    height: 100%;
+    color: #fff;
+}
+#downSvg2+div span {
+    font-size: 14px;
+    font-weight: 250;
+    position: absolute;
+    top: 13px;
+    left: 20px;
+    text-align: center;
+}
+#downSvg2+div svg {
+    position: absolute;
+    top: 4px;
+    right: 5px;
+    fill: #fff;
+    width: 34px;
+    cursor: pointer;
+}
+
+/*////////////////////////////////////////////////////////////////////////*/
+/*---------------------------- Media Queries -----------------------------*/
+/*////////////////////////////////////////////////////////////////////////*/
+@media only screen and (max-width: 950px){
+    .blurborder:nth-child(2) { /*Top*/
+        height: 3vh;
+    }
+    .blurborder:nth-child(3) { /*Left*/
+        width: 3vh;
+    }
+    .blurborder:nth-child(4) { /*Bottom*/
+        height: 3vh;
+    }
+    .blurborder:nth-child(5) { /*Right*/
+        width: 3vh;
+    }
+    .transImg {
+        width: 6vh;
+        height: 6vh;
+    }
+    #cornerBlurTL {
+        top: 2.4vh;
+        left: 2.4vh;
+    }
+    #cornerBlurTR {
+        top: 3vh;
+        right: 3vh;
+    }
+    #cornerBlurBR {
+        bottom: 2.7vh;
+        right: 2.7vh;
+    }
+    #cornerBlurBL {
+        transform: rotateY(180deg);
+        bottom: 2.7vh;
+        left: 2.7vh;
+    }
+
+    #main {
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+    #currentStats {
+        top: 0;
+        left: 0;
+    }
+    #currentCity {
+        width: 60%;
+    }
+    #currentDetails span:first-child {
+        display: block;
+    }
+    #currentDetails span:first-child::after {
+        content: '';
+    }
+    #main>div {
+        width: 100%;
+        position: relative;
+    }
+    #sideContainer>div:first-child {
+        width: 100%;
+        top: calc(100vh - 340px);
+    }
+    #layer1>div:last-child {
+        bottom: 3%;
+        right: 1%;
+        z-index: 1;
+    }
+    #layerTop div:first-child {
+        font-size: clamp(10px, 4vw, 16px);
+        left: clamp(65px, 45%, 1000px);
+    }
+    #layerTop div:first-child span {
+        font-size: clamp(24px, 10vw, 32px);
+    }
+    #digitalClock {
+        font-size: clamp(20px, 9vw, 40px);
+        left: clamp(65px, 45%, 1000px);
+    }
+    #layerTop div:last-child {
+        font-size: clamp(10px, 4vw, 16px);
+        left: clamp(65px, 45%, 1000px);
+    }
+
+    #forecast {
+        width: 100%;
+        top: calc(100vh - 340px);
+    }
+    .caret {
+        display: none;
+    }
+    #hourlyForecast {
+        overflow-x: scroll;
+    }
+    #hourlyForecast>span:first-child {
+        top: 20px;
+        font-size: clamp(12px, 3vw, 16px);
+    }
+    .hourWeather {
+        width: clamp(40px, 14vw, 70px);
+    }
+    .hourWeather span:first-child {
+        font-size: clamp(10px, 2vw, 12px);
+    }
+    .hourWeather span:nth-child(3) {
+        font-size: clamp(12px, 3vw, 16px);
+    }
+    .hourWeather span:nth-child(3) sup {
+        font-size: clamp(8px, 2vw, 12px);
+    }
+
+    #dailyForecast>span:first-child {
+        font-size: clamp(12px, 3vw, 16px);
+    }
+    #dailyForecast>div:nth-child(3) {
+        overflow-y: scroll;
+    }
+    .dayWeather span:first-child {
+        font-size: clamp(12px, 2.5vw, 16px);
+    }
+    .dayWeather svg {
+        width: clamp(16px, 20vw, 32px);
+        min-width: 20px;
+    }
+    .dayWeather>span:nth-child(3) {
+        font-size: clamp(10px, 3vw, 16px);
+    }
+    .dayWeather>input[type="range"] {
+        min-width: 40px;
+    }
+    .dayWeather>span:last-child {
+        font-size: clamp(10px, 3vw, 16px);
+    }
+}

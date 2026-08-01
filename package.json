@@ -1,0 +1,19 @@
+{
+  "name": "date-weather-todos",
+  "version": "2.0.0",
+  "description": "Everything designed and developed from scratch by the author.",
+  "license": "ISC",
+  "author": "r3actjs@gmail.com",
+  "type": "commonjs",
+  "main": "todoApp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "firebase": "^12.2.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.13",
+    "tailwindcss": "^4.1.13"
+  }
+}

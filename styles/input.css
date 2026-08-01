@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Arsenal');
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fleur+De+Leah&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@custom-variant h-short {
+    @media (max-height: 499px) {
+        @slot;
+    }
+}
+@custom-variant li-active {
+    &.li-active {
+        @slot;
+    }
+}
+@source inline("size-[102%] -translate-x-1/100 -translate-y-1/100");
+@layer base {
+    h1 {
+        font-size: clamp(40px, 15vw, 60px);
+        font-weight: bold;
+    }
+}
+@theme {
+    --font-golos: "Golos Text";
+    --font-fleur: "Fleur De Leah";
+    --font-arsenal: "Arsenal";
+
+    --color-bgMain: #eee;
+    --color-bgMainLighter: #fff;
+    --color-textMain: #000;
+    --color-textMainLighter: #111;
+    --coverBgHue: 0deg;
+    --coverBgBri: 100%;
+    --topMenuHeight: 200px;
+    --color-btnHover: #f3f3f3;
+    --color-themeColor: #269bbe;
+
+    --color-bgDark: #1c2a3a;
+    --color-bgDarkLighter: #293c54;
+    --color-textDark: #eee;
+    --color-textDarkLighter: #ddd;
+    --coverBgBriDark: 85%;
+    --color-btnHoverDark: #233347;
+
+    --widHei: clamp(20px, 7vw, 26px);
+    --breakpoint-customW: 1101px;
+    --breakpoint-xsm: 300px;
+}
+@utility testBorder {
+    border: 1px solid #ff0000;
+}

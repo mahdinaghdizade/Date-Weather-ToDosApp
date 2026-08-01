@@ -1,0 +1,422 @@
+:root {
+    /*--borderAnimDir: normal;*/
+    --modalColor: rgba(201, 77, 77, 1);
+}
+* {
+    box-sizing: border-box;
+}
+html {
+    /*height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;*/
+    overflow: hidden;
+}
+body {
+    height: 110vh;
+    width: 110vw;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    left: -10vw;
+    top: -10vh;
+    background-color: #fff;
+    color: #000;
+    font-size: 16px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+/*////////////////////////////////////////////////////////////////////////////*/
+/*////////////////////////////Background Stuff////////////////////////////////*/
+/*////////////////////////////////////////////////////////////////////////////*/
+#bgContainer {
+    filter: blur(2px);
+    font-family: 'Golos Text';
+    transform: rotate(-12deg);
+    height: 120vh;
+    width: 120vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+    left: -55px;
+}
+.col {
+    width: 25%;
+    min-width: 160px;
+    margin: 0 0.3vw;
+    height: 120vh;
+    position: relative;
+}
+.todoTemplate {
+    width: 100%;
+    height: 25%;
+    margin: 0.60vw 0;
+    position: absolute;
+    padding: 15px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.todoTemplate > div:not(:nth-child(2)) {
+    width: 100%;
+    font-size: clamp(0.8em, 3vh, 1.2em);
+}
+.todoDes {
+    width: 100%;
+    font-size: clamp(12px, 3vh, 24px);
+    margin: 4px 0;
+}
+span:has(> .starIcon) {
+    margin-left: -5px;
+}
+.starIcon {
+    position: relative;
+    width: 20px;
+    top: 3px;
+}
+.starIcon > path {
+    fill: #f37c0c;
+}
+.todoTemplate > div:nth-child(3) {
+    bottom: 0;
+}
+#col1 .todoTemplate {
+    transition: top 10ms linear;
+}
+#col2 .todoTemplate {
+    transition: top 8ms linear;
+}
+#col3 .todoTemplate {
+    transition: top 9ms linear;
+}
+#col4 .todoTemplate {
+    transition: top 11ms linear;
+}
+
+/*////////////////////////////////////////////////////////////////////////////*/
+/*////////////////////////////Foreground Stuff////////////////////////////////*/
+/*////////////////////////////////////////////////////////////////////////////*/
+#foreContainer {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 10vh;
+    left: 10vw; /*cuz the actual page width is 120vw due to background stuff*/
+    overflow-y: scroll;
+    z-index: 1;
+    /*padding-top: 10vh;*/
+}
+#content {
+    width: 100%;
+    height: 100%;
+    min-height: 710px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5vh;
+}
+#header {
+    /*position: relative;
+    top: 6%;*/
+    /*margin-top: 10px;*/
+    width: 100%;
+    height: 180px;
+    font-family: 'Ephesis';
+    font-size: clamp(70px, 24vw, 100px);/*100px;*/
+    font-weight: 800;
+    text-align: center;
+    background-image: linear-gradient(to right, #ffffff88, #ffffff99);
+    background-clip: text;
+    mix-blend-mode: difference;
+    color: #ffffff33;
+    overflow: hidden;
+    text-wrap: nowrap;
+}
+#header * {
+    margin: 0;
+    padding: 0;
+}
+#header p {
+    text-shadow: 4px 4px 0 rgba(57, 0, 201, 0.85);
+    line-height: 1.2;
+    padding-right: 20px;
+}
+.underlineMask {
+    position: relative;
+    top: -8px;
+    left: 1vw;
+    height: 71px;
+    width: clamp(240px, 90vw, 400px);
+    background-image: linear-gradient(to right, rgba(52, 17, 140, 100%), rgba(52, 17, 140, 100%) 20%, rgba(255, 255, 255, 0%) 95%);
+    -webkit-mask-image: url(./files/underline.svg);
+    mask-image: url(./files/underline.svg);
+    mask-repeat: no-repeat;
+    mask-size: contain;
+}
+#formContainer {
+    font-family: Corbel;
+    font-size: clamp(14px, 4vw, 18px);
+    font-weight: 200;
+    color: black;
+    border-radius: 35px;
+    width: clamp(240px, 60%, 500px);
+    height: 500px;
+    min-height: 500px;
+    box-shadow: 10px 10px 30px rgba(34, 0, 117, 0.7), -10px 10px 30px rgba(34, 0, 117, 0.7);
+    overflow: hidden;
+    position: relative;
+}
+#loginBox, #signupBox {
+    /*position: absolute;
+    top: 30%;*/
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 0.73));
+    backdrop-filter: blur(25px);
+    padding: 20px 25px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    overflow-y: scroll;
+}
+#signupBox {
+    position: absolute;
+    top: -120%;
+    border-bottom: 2px solid #fff;
+    box-shadow: 0 5px 30px #000;
+    border-radius: 35px;
+    transition: top 0.8s cubic-bezier(0.5, 1, 0.6, 1.2);
+}
+#loginBox>div:first-child, #signupBox>div:first-child {
+    font-size: 2.3em;
+    width: 100%;
+}
+#loginBox p:nth-child(2), #signupBox p:nth-child(2) {
+    width: 100%;
+    height: 34px;
+    flex-shrink: 0;
+    overflow: visible;
+}
+#loginBox form, #signupBox form {
+    /*margin-top: 10px;*/
+    width: 100%;
+}
+#signupBox form {
+    margin-top: -10px;
+}
+#signupBox p:nth-child(2) {
+    margin-top: 5px;
+}
+form input {
+    display: block;
+    width: 99%;
+    height: 38px;
+    font-size: 0.85em;
+    letter-spacing: 1px;
+    padding: 0 10px;
+    background-color: #fff;
+    color: #000;
+    border: 2px solid rgba(52, 17, 140, 30%);
+    border-radius: 25px;
+    outline: none;
+    position: relative;
+}
+#input1bg, #input2bg, #f2input1bg, #f2input2bg, #f2input3bg {
+    width: 100%;
+    height: 44px;
+    border-radius: 25px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+#input1bg div, #input2bg div, #f2input1bg div, #f2input2bg div, #f2input3bg div {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateZ(45deg);
+    transition: transform 1s ease-in-out;
+}
+#f2input2bg span {
+    width: 100%;
+    display: block;
+}
+.animateBorder {
+    animation: input1BgAnim 1s ease-in-out 0s 1 normal both;
+}
+.animateBorderRev {
+    animation: input1BgAnim 1s ease-in-out 0s 1 reverse both;
+}
+@keyframes input1BgAnim {
+    from {
+        transform: scale(1) rotateZ(45deg);
+    }
+    to {
+        transform: scale(3500%) rotateZ(45deg);
+    }
+}
+form a {
+    color: rgba(52, 17, 140, 100%);
+    text-decoration: none;
+    font-size: 0.9em;
+}
+form a:visited {
+    color: rgba(52, 17, 140, 70%);
+}
+form > a:nth-child(3) {
+    position: relative;
+    left: 2%;
+    top: -3%;
+}
+#f1btn1, #f2btn1 {
+    display: block;
+    width: 100%;
+    margin: 25px 0;
+    height: 40px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1em;
+    letter-spacing: 1px;
+    background-color: rgba(77, 77, 201, 0.67);
+    cursor: pointer;
+    color: white;
+}
+hr {
+    display: inline;
+    float: left;
+    height: 1px;
+    width: 45%;
+    color: #777;
+    margin: 0;
+}
+hr:nth-child(6) {
+    float: right;
+}
+#lineOver, #f2lineOver {
+    font-size: 18px;
+    margin-top: -13px;
+    text-align: center;
+    width: 100%;
+}
+#f1btn2, #f2btn2 {
+    display: block;
+    width: 100%;
+    margin: 15px 0 -1px;
+    height: 40px;
+    border: none;
+    font-size: 1em;
+    letter-spacing: 1px;
+    background-color: rgba(51, 51, 91, 0.67);
+    cursor: pointer;
+    color: #ddd;
+}
+form > div:last-child {
+    width: fit-content;
+    text-align: center;
+    background-color: #77777733;
+    border-radius: 10px;
+    margin: 30px auto 0;
+    padding: 0 10px;
+    text-wrap: nowrap;
+}
+#signupBox form > div:last-child {
+    font-size: clamp(14px, 3.5vw, 18px);
+}
+form div:last-child a {
+    color: rgba(52, 17, 140, 100%);
+    font-weight: bold;
+}
+
+/*#signupBox p:last-child {
+    position: absolute;
+    width: calc(100% - 50px);
+    background-color: #fff;
+    border: 1px solid rgba(52, 17, 140, 30%);
+    border-radius: 15px;
+}*/
+
+#modal {
+    display: none;
+    width: 82%;
+    height: 100px;
+    font-size: 0.8em;
+    font-weight: normal;
+    text-align: justify;
+    position: absolute;
+    top: 10%;
+    left: 9%;
+    border-radius: 20px;
+    background-color: var(--modalColor);
+    transition: opacity 200ms linear;
+}
+#modal div:first-child {
+    width: 6px;
+    height: 6px;
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translate(-50%);
+    border: 6px solid transparent;
+    border-bottom: 6px solid var(--modalColor);
+}
+#modal p {
+    width: 90%;
+    height: 70%;
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    margin: 0;
+    color: #eee;
+}
+#modal div:last-child {
+    width: 86%;
+    height: 2px;
+    border-radius: 1px;
+    position: absolute;
+    left: 7%;
+    bottom: 10%;
+    background-color: #fff;
+    transition: width 4s linear;
+}
+/*@keyframes modalAnimator {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100%;
+    }
+}*/
+/*////////////////////////////////////////////////////////////////////////////*/
+/*/////////////////////////////Media Queries//////////////////////////////////*/
+/*////////////////////////////////////////////////////////////////////////////*/
+
+@media only screen and (min-width: 501px) {
+    #bgContainer {
+        left: -5px;
+    }
+    .animateBorder {
+        animation: input1BgAnim 0.5s ease-in-out 0s 1 normal both;
+    }
+    .animateBorderRev {
+        animation: input1BgAnim 0.5s ease-in-out 0s 1 reverse both;
+    }
+    #signupBox p:last-child {
+        display: none;
+    }
+}
+
