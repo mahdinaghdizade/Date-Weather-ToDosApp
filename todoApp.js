@@ -3,14 +3,14 @@
 let firebaseApp, db, auth, provider;
 window.addEventListener('load', function() {
     firebaseApp = firebase.initializeApp({
-        apiKey: "AIzaSyBch99TZxncUE-BQae0787kspmjDHpM92U",
-        authDomain: "todolist-by-gauss.firebaseapp.com",
-        databaseURL: "https://todolist-by-gauss-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "todolist-by-gauss",
-        storageBucket: "todolist-by-gauss.firebasestorage.app",
-        messagingSenderId: "861757370732",
-        appId: "1:861757370732:web:f3cbb5de6f87b82b794349",
-        measurementId: "G-VHXFETHW7W"
+        apiKey: "DELETED-SECURITY",
+        authDomain: "DELETED-SECURITY",
+        databaseURL: "DELETED-SECURITY",
+        projectId: "DELETED-SECURITY",
+        storageBucket: "DELETED-SECURITY",
+        messagingSenderId: "DELETED-SECURITY",
+        appId: "DELETED-SECURITY",
+        measurementId: "DELETED-SECURITY"
     });
     db = firebaseApp.firestore();
     auth = firebaseApp.auth();
